@@ -1,19 +1,13 @@
-f=input("enter name of file")
-x=int(input("enter the number of data:"))
-s=[]
+f=input("enter name of file:")
+n=[]
 t=()
-for i in range(x):
-    c=input("enter the data:")
-    s.append(c)
-f=s
 def read_number(path):
     try:
-        l=[]
-        for i in path:
-            c=float(i)
-            l.append(c)
-    except FileNotFoundError:
+        f = open(path, "r")
+        for i in f:
+            n.append(float(i.strip()))
         print("file path is wrong")
+    except FileNotFoundError:
         return ('error',f"file not found:{path}",0)
     except PermissionError:
         print("file cannot be read")
@@ -25,11 +19,11 @@ def read_number(path):
         return ('error',e,0)
     else:
         sum=0
-        n=0
-        for i in l:
+        l=0
+        for i in n:
             sum += i
-            n +=1
-        t=('ok',sum,n)
+            l+=1
+        t=('ok',sum,l)
         print(t)
     finally:
         print("done reading")
